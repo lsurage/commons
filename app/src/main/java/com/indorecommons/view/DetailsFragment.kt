@@ -9,6 +9,8 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 
 import com.indorecommons.R
+import com.indorecommons.utils.getProgressDrawable
+import com.indorecommons.utils.loadImage
 import com.indorecommons.viewModel.DetailsViewModel
 import kotlinx.android.synthetic.main.details_fragment.*
 
@@ -19,6 +21,7 @@ class DetailsFragment : Fragment() {
     }
 
     private lateinit var viewModel: DetailsViewModel
+    private var gitRepoId = 0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,7 +37,10 @@ class DetailsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProviders.of(this).get(DetailsViewModel::class.java)
-        viewModel.fetch()
+        arguments?.let {
+        gitRepoId = DetailsFragmentArgs.fromBundle(it).userId
+        }
+        viewModel.fetch(gitRepoId)
 
         observeViewModel()
     }
@@ -47,6 +53,7 @@ class DetailsFragment : Fragment() {
                 userType.text = it.owner?.type
                 nodeId.text = it.owner?.nodeId
                 url.text = it.owner?.url
+                userAvatar.loadImage(it.owner?.avatarUrl, getProgressDrawable(userAvatar.context))
 
             }
         })
