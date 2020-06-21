@@ -9,7 +9,7 @@
         android:id="@+id/listFragment"
         android:name="com.indorecommons.view.ListFragment"
         android:label="list_fragment"
-        tools:layout="@layout/list_fragment" >
+        tools:layout="@layout/list_fragment">
         <action
             android:id="@+id/action_to_details"
             app:destination="@id/detailsFragment" />
@@ -18,7 +18,13 @@
         android:id="@+id/detailsFragment"
         android:name="com.indorecommons.view.DetailsFragment"
         android:label="details_fragment"
-        tools:layout="@layout/details_fragment" >
+        tools:layout="@layout/details_fragment">
+        <argument
+            android:name="id"
+            android:defaultValue="0"
+            app:argType="Integer">
+
+        </argument>
         <action
             android:id="@+id/action_to_list"
             app:destination="@id/listFragment" />
