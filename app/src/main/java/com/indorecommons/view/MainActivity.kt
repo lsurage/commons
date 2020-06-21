@@ -1,7 +1,8 @@
-package com.indorecommons
+package com.indorecommons.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.indorecommons.R
 
 class MainActivity : AppCompatActivity() {
 
