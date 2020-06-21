@@ -27,7 +27,7 @@ fun ImageView.loadImage(url: String?, progressDrawable: CircularProgressDrawable
         .into(this)
 }
 
-private fun isNetworkAvailable(context: Context): Boolean {
+ fun isNetworkAvailable(context: Context): Boolean {
     val service = Context.CONNECTIVITY_SERVICE
     val manager = context.getSystemService(service) as ConnectivityManager?
     val network = manager?.activeNetworkInfo

@@ -1,10 +1,12 @@
 package com.indorecommons.viewModel
 
 import android.app.Application
+import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import com.indorecommons.database.GitRepoDatabase
 import com.indorecommons.model.GitRepoData
 import com.indorecommons.network.RetroFitService
+import com.indorecommons.utils.isNetworkAvailable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.observers.DisposableSingleObserver
@@ -22,7 +24,22 @@ class ListViewModel(application: Application) : BaseViewModel(application) {
 
 
     fun refresh() {
-        fetchFromRemote()
+        if (isNetworkAvailable(getApplication())) {
+            fetchFromRemote()
+        } else {
+            fetchFromDatabase()
+        }
+    }
+
+    private fun fetchFromDatabase() {
+        loading.value = true
+        launch {
+            val gitDao = GitRepoDatabase(getApplication()).gitRepoDao()
+            val gitRepos = gitDao.getAllRepo()
+            gitRepoFetched(gitRepos)
+            Toast.makeText(getApplication(),"loaded from database", Toast.LENGTH_LONG).show()
+
+        }
     }
 
 
@@ -67,6 +84,7 @@ class ListViewModel(application: Application) : BaseViewModel(application) {
             gitDao.deleteAllRepo()
             gitDao.insertAll(*repoList.toTypedArray())
             gitRepoFetched(repoList)
+            Toast.makeText(getApplication(),"loaded from remote", Toast.LENGTH_LONG).show()
         }
     }
 }
