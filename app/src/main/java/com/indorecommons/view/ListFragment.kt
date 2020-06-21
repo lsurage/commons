@@ -1,19 +1,19 @@
 package com.indorecommons.view
 
-import android.opengl.Visibility
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-
 import com.indorecommons.R
 import com.indorecommons.view.adapters.GitRepoAdapter
 import com.indorecommons.viewModel.ListViewModel
 import kotlinx.android.synthetic.main.list_fragment.*
+
 
 class ListFragment : Fragment() {
 
@@ -40,7 +40,21 @@ class ListFragment : Fragment() {
             layoutManager = LinearLayoutManager(context)
             adapter = repoAdapter
         }
+
+        repoList.addItemDecoration( DividerItemDecoration(getContext(),
+            DividerItemDecoration.VERTICAL))
+
+        refresh.setOnRefreshListener {
+            listError.visibility = View.GONE
+            repoList.visibility = View.GONE
+            loadingView.visibility = View.VISIBLE
+            viewModel.refresh()
+            refresh.isRefreshing = false
+
+
+        }
         observeViewModel()
+
     }
 
     private fun observeViewModel() {

@@ -7,6 +7,8 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.indorecommons.R
 import com.indorecommons.model.GitRepoDataModel
+import com.indorecommons.utils.getProgressDrawable
+import com.indorecommons.utils.loadImage
 import com.indorecommons.view.ListFragmentDirections
 import kotlinx.android.synthetic.main.details_fragment.view.*
 import kotlinx.android.synthetic.main.item_git_repo.view.*
@@ -30,6 +32,11 @@ class GitRepoAdapter(val repoList: ArrayList<GitRepoDataModel>) :
         holder.view.fullName.text = repoList[position].fullName
         holder.view.name.text = repoList[position].name
         holder.view.userId.text = repoList[position].id.toString()
+
+        holder.view.avatar.loadImage(
+            repoList[position].owner?.avatarUrl,
+            getProgressDrawable(holder.view.avatar.context)
+        )
         holder.view.setOnClickListener { view ->
             val action = ListFragmentDirections.actionToDetails()
             action.userId = repoList[position].id!!
