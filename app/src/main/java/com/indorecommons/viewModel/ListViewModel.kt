@@ -36,9 +36,13 @@ class ListViewModel(application: Application) : BaseViewModel(application) {
         launch {
             val gitDao = GitRepoDatabase(getApplication()).gitRepoDao()
             val gitRepos = gitDao.getAllRepo()
-            gitRepoFetched(gitRepos)
-            Toast.makeText(getApplication(),"loaded from database", Toast.LENGTH_LONG).show()
-
+            if (gitRepos.isNotEmpty()) {
+                gitRepoFetched(gitRepos)
+                Toast.makeText(getApplication(), "loaded from database", Toast.LENGTH_LONG).show()
+            } else {
+                loadError.value = true
+                loading.value = false
+            }
         }
     }
 
@@ -84,7 +88,7 @@ class ListViewModel(application: Application) : BaseViewModel(application) {
             gitDao.deleteAllRepo()
             gitDao.insertAll(*repoList.toTypedArray())
             gitRepoFetched(repoList)
-            Toast.makeText(getApplication(),"loaded from remote", Toast.LENGTH_LONG).show()
+            Toast.makeText(getApplication(), "loaded from remote", Toast.LENGTH_LONG).show()
         }
     }
 }
