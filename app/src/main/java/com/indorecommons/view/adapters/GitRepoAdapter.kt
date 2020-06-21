@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.indorecommons.R
 import com.indorecommons.model.GitRepoDataModel
 import kotlinx.android.synthetic.main.details_fragment.view.*
+import kotlinx.android.synthetic.main.item_git_repo.view.*
 
 class GitRepoAdapter(val repoList: ArrayList<GitRepoDataModel>) :
     RecyclerView.Adapter<GitRepoAdapter.GitRepoHolder>() {
@@ -24,10 +25,9 @@ class GitRepoAdapter(val repoList: ArrayList<GitRepoDataModel>) :
     override fun getItemCount() = repoList.size
 
     override fun onBindViewHolder(holder: GitRepoHolder, position: Int) {
-        holder.view.userFullName.text = repoList[position].fullName
-        holder.view.userType.text = repoList[position].owner?.type
-        holder.view.nodeId.text = repoList[position].owner?.nodeId
-        holder.view.url.text = repoList[position].owner?.url
+        holder.view.fullName.text = repoList[position].fullName
+        holder.view.name.text = repoList[position].name
+        holder.view.userId.text = repoList[position].id.toString()
     }
 
 
