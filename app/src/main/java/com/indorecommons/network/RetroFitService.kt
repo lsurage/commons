@@ -1,6 +1,6 @@
 package com.indorecommons.network
 
-import com.indorecommons.model.GitRepoDataModel
+import com.indorecommons.model.GitRepoData
 import com.indorecommons.network.api.GitRepoApi
 import io.reactivex.Single
 import retrofit2.Retrofit
@@ -20,7 +20,7 @@ class RetroFitService {
             .create(GitRepoApi::class.java)
 
 
-    fun getRepositories(): Single<List<GitRepoDataModel>> {
+    fun getRepositories(): Single<List<GitRepoData>> {
         return api.getGitRepos()
     }
 }

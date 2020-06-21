@@ -1,6 +1,7 @@
 package com.indorecommons.utils
 
 import android.content.Context
+import android.net.ConnectivityManager
 import android.widget.ImageView
 import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.bumptech.glide.Glide
@@ -24,4 +25,11 @@ fun ImageView.loadImage(url: String?, progressDrawable: CircularProgressDrawable
         .setDefaultRequestOptions(options)
         .load(url)
         .into(this)
+}
+
+private fun isNetworkAvailable(context: Context): Boolean {
+    val service = Context.CONNECTIVITY_SERVICE
+    val manager = context.getSystemService(service) as ConnectivityManager?
+    val network = manager?.activeNetworkInfo
+    return (network != null)
 }

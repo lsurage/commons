@@ -6,14 +6,13 @@ import android.view.ViewGroup
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.indorecommons.R
-import com.indorecommons.model.GitRepoDataModel
+import com.indorecommons.model.GitRepoData
 import com.indorecommons.utils.getProgressDrawable
 import com.indorecommons.utils.loadImage
 import com.indorecommons.view.ListFragmentDirections
-import kotlinx.android.synthetic.main.details_fragment.view.*
 import kotlinx.android.synthetic.main.item_git_repo.view.*
 
-class GitRepoAdapter(val repoList: ArrayList<GitRepoDataModel>) :
+class GitRepoAdapter(val repoList: ArrayList<GitRepoData>) :
     RecyclerView.Adapter<GitRepoAdapter.GitRepoHolder>() {
 
     class GitRepoHolder(var view: View) : RecyclerView.ViewHolder(view) {
@@ -45,7 +44,7 @@ class GitRepoAdapter(val repoList: ArrayList<GitRepoDataModel>) :
     }
 
 
-    fun updateRepoList(newList: ArrayList<GitRepoDataModel>) {
+    fun updateRepoList(newList: ArrayList<GitRepoData>) {
         repoList.clear()
         repoList.addAll(newList)
         notifyDataSetChanged()
