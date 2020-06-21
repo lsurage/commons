@@ -3,6 +3,7 @@ package com.indorecommons.utils
 import android.content.Context
 import android.net.ConnectivityManager
 import android.widget.ImageView
+import androidx.databinding.BindingAdapter
 import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
@@ -32,4 +33,9 @@ fun ImageView.loadImage(url: String?, progressDrawable: CircularProgressDrawable
     val manager = context.getSystemService(service) as ConnectivityManager?
     val network = manager?.activeNetworkInfo
     return (network != null)
+}
+
+@BindingAdapter("android:imageUrl")
+fun loadImage(view:ImageView, url:String){
+    view.loadImage(url, getProgressDrawable(view.context))
 }
