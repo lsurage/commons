@@ -15,9 +15,7 @@ class GitRepoAdapter(val repoList:ArrayList<GitRepoDataModel>): RecyclerView.Ada
         TODO("Not yet implemented")
     }
 
-    override fun getItemCount(): Int {
-        TODO("Not yet implemented")
-    }
+    override fun getItemCount() = repoList.size
 
     override fun onBindViewHolder(holder: GitRepoHolder, position: Int) {
         TODO("Not yet implemented")

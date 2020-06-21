@@ -3,12 +3,106 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-
-    <FrameLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".view.DetailsFragment" >
+        android:layout_height="match_parent">
 
-    </FrameLayout>
+        <ImageView
+            android:id="@+id/userAvatar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:minHeight="200dp"
+            android:scaleType="fitCenter"
+            android:src="@mipmap/ic_launcher" />
 
+
+        <TextView
+            android:id="@+id/userFullName"
+            style="@style/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/userAvatar"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="4dp"
+            android:text="@string/user_name" />
+
+
+        <TableRow
+            android:id="@+id/row1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/userFullName"
+            android:padding="10dp"
+            android:stretchColumns="*"
+            android:weightSum="2">
+
+            <TextView
+                style="@style/textBold"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/user_type" />
+
+            <TextView
+                android:id="@+id/userType"
+                style="@style/textBold"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/user_name" />
+        </TableRow>
+
+
+        <TableRow
+            android:id="@+id/row2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/row1"
+            android:padding="10dp"
+            android:stretchColumns="*"
+            android:weightSum="2">
+
+            <TextView
+                style="@style/textBold"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/node_id" />
+
+            <TextView
+                android:id="@+id/nodeId"
+                style="@style/textBold"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/user_name" />
+        </TableRow>
+
+
+        <TableRow
+            android:id="@+id/row3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/row2"
+            android:padding="10dp"
+            android:stretchColumns="*"
+            android:weightSum="2">
+
+            <TextView
+                style="@style/textBold"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/url" />
+
+            <TextView
+                android:id="@+id/url"
+                style="@style/textBold"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/url" />
+        </TableRow>
+    </RelativeLayout>
 </layout>
