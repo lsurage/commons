@@ -19,7 +19,10 @@
         android:name="com.indorecommons.view.DetailsFragment"
         android:label="details_fragment"
         tools:layout="@layout/details_fragment">
-
+        <argument
+            android:name="userId"
+            android:defaultValue="0"
+            app:argType="integer"/>
         <action
             android:id="@+id/action_to_list"
             app:destination="@id/listFragment" />
